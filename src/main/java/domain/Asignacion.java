@@ -1,12 +1,17 @@
 package domain;
 
-import java.util.List;
+import org.uqbar.commons.model.annotations.Observable;
 
+@Observable
 public class Asignacion {
 	private Tarea tarea;
 
-	public boolean estaAprobada(){
+	public Boolean getEstaAprobada() {
 		return true;
+	}
+
+	public Integer getNotaFinal() {
+		return 6;
 	}
 
 }

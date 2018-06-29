@@ -1,11 +1,17 @@
 package ui;
 
 import domain.Alumno;
+import domain.Asignacion;
 import org.uqbar.arena.layout.ColumnLayout;
+import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.tables.Column;
+import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
+
+import java.util.Collections;
 
 //IMPORTANTE: correr con -Djava.system.class.loader=com.uqbar.apo.APOClassLoader
 public class AlumnoView extends MainWindow<Alumno> {
@@ -16,22 +22,40 @@ public class AlumnoView extends MainWindow<Alumno> {
 	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ventana de Alumno");
-		mainPanel.setLayout(new ColumnLayout(2));
+		mainPanel.setLayout(new VerticalLayout());
 
-		new Label(mainPanel).setText("Nombre:");
-		new Label(mainPanel).bindValueToProperty("nombre");
+		Panel datosPanel = new Panel(mainPanel);
+		datosPanel.setLayout(new ColumnLayout(2));
 
-		new Label(mainPanel).setText("Legajo");
-		new Label(mainPanel).bindValueToProperty("legajo");
+		new Label(datosPanel).setText("Nombre:");
+		new Label(datosPanel).bindValueToProperty("nombre");
 
-		new Label(mainPanel).setText("Usuario github:");
-		new Label(mainPanel).bindValueToProperty("usuarioGithub");
+		new Label(datosPanel).setText("Legajo");
+		new Label(datosPanel).bindValueToProperty("legajo");
 
-		new Button(mainPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, this.getModelObject()).open());
+		new Label(datosPanel).setText("Usuario github:");
+		new Label(datosPanel).bindValueToProperty("usuarioGithub");
+
+		new Button(datosPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, this.getModelObject()).open());
+
+		this.crearTablaDeNotas(mainPanel);
+	}
+
+	private void crearTablaDeNotas(Panel mainPanel) {
+		Table<Asignacion> tabla = new Table<Asignacion>(mainPanel, Asignacion.class);
+		tabla.bindItemsToProperty("asignaciones");
+
+		this.describirTablaDeNotas(tabla);
+	}
+
+	private void describirTablaDeNotas(Table<Asignacion> tabla) {
+		new Column<Asignacion>(tabla).setTitle("Nota final").bindContentsToProperty("notaFinal");
+
+		new Column<Asignacion>(tabla).setTitle("¿Aprobada?").bindContentsToProperty("estaAprobada").setTransformer(new BoolTransformer());
 	}
 
 	public static void main(String[] args) {
-		Alumno alumno = new Alumno("Martin", 1590935L, "mnmallea");
+		Alumno alumno = new Alumno("Martin", 1590935L, "mnmallea", Collections.singletonList(new Asignacion()));
 		new AlumnoView(alumno).startApplication();
 	}
 }
