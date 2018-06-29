@@ -24,7 +24,7 @@ public class AlumnoView extends MainWindow<Alumno> {
 		new Label(mainPanel).setText("Legajo");
 		new Label(mainPanel).bindValueToProperty("legajo");
 
-		new Label(mainPanel).set<>Text("Usuario github:");
+		new Label(mainPanel).setText("Usuario github:");
 		new Label(mainPanel).bindValueToProperty("usuarioGithub");
 
 		new Button(mainPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, this.getModelObject()).open());
