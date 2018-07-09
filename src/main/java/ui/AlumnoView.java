@@ -1,7 +1,6 @@
 package ui;
 
-import domain.Alumno;
-import domain.Asignacion;
+import domain.*;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -11,7 +10,7 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
 
-import java.util.Collections;
+import java.util.Arrays;
 
 //IMPORTANTE: correr con -Djava.system.class.loader=com.uqbar.apo.APOClassLoader
 public class AlumnoView extends MainWindow<Alumno> {
@@ -49,13 +48,18 @@ public class AlumnoView extends MainWindow<Alumno> {
 	}
 
 	private void describirTablaDeNotas(Table<Asignacion> tabla) {
+		new Column<Asignacion>(tabla).setTitle("Nombre").bindContentsToProperty("nombre");
 		new Column<Asignacion>(tabla).setTitle("Nota final").bindContentsToProperty("notaFinal");
-
 		new Column<Asignacion>(tabla).setTitle("¿Aprobada?").bindContentsToProperty("estaAprobada").setTransformer(new BoolTransformer());
 	}
 
 	public static void main(String[] args) {
-		Alumno alumno = new Alumno("Martin", 1590935L, "mnmallea", Collections.singletonList(new Asignacion()));
+		AsignacionParcial asignacion = new AsignacionParcial("Parcial DDS");
+		asignacion.agregarCalificacion(new CalificacionNumerica(6));
+		AsignacionTP tp = new AsignacionTP("TP UI Arena");
+		tp.agregarCalificacion(new CalificacionConceptual("M"));
+		tp.agregarCalificacion(new CalificacionConceptual("R"));
+		Alumno alumno = new Alumno("Martin", 1590935L, "mnmallea", Arrays.asList(asignacion, tp));
 		new AlumnoView(alumno).startApplication();
 	}
 }
