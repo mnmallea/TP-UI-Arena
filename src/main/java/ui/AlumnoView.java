@@ -51,7 +51,7 @@ public class AlumnoView extends MainWindow<Alumno> {
 	private void describirTablaDeNotas(Table<Asignacion> tabla) {
 		new Column<Asignacion>(tabla).setTitle("Nota final").bindContentsToProperty("notaFinal");
 
-		new Column<Asignacion>(tabla).setTitle("Â¿Aprobada?").bindContentsToProperty("estaAprobada").setTransformer(new BoolTransformer());
+		new Column<Asignacion>(tabla).setTitle("¿Aprobada?").bindContentsToProperty("estaAprobada").setTransformer(new BoolTransformer());
 	}
 
 	public static void main(String[] args) {
