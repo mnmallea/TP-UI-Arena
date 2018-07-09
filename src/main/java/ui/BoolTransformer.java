@@ -6,6 +6,6 @@ public class BoolTransformer implements Transformer<Boolean, String> {
 
 	@Override
 	public String transform(Boolean estaAprobada) {
-		return estaAprobada? "SÃ­" : "No";
+		return estaAprobada? "Sí" : "No";
 	}
 }
