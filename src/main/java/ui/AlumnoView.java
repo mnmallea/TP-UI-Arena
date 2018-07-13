@@ -1,6 +1,5 @@
 package ui;
 
-import domain.*;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -11,9 +10,12 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
 
-import java.util.Arrays;
+import domain.Alumno;
+import domain.Asignacion;
+import domain.Consulta;
 
 //IMPORTANTE: correr con -Djava.system.class.loader=com.uqbar.apo.APOClassLoader
+@SuppressWarnings("serial")
 public class AlumnoView extends MainWindow<Consulta> {
 	public AlumnoView(Consulta model) {
 		super(model);
@@ -26,7 +28,7 @@ public class AlumnoView extends MainWindow<Consulta> {
 		
 		new Label(mainPanel).setText("Seleccione Alumno");
 		Selector<Alumno> selector = new Selector<Alumno>(mainPanel);
-		selector.bindItemsToProperty("alumnos").toString();
+		selector.bindItemsToProperty("alumnos");
 		selector.bindValueToProperty("alumno");
 		
 		Panel datosPanel = new Panel(mainPanel);
