@@ -2,19 +2,19 @@ package domain;
 
 public class CalificacionNumerica implements Calificacion<Integer> {
 
-	private Integer calificacion;
+	private Integer nota;
 
-	public CalificacionNumerica(Integer calificacion) {
-		this.calificacion = calificacion;
+	public CalificacionNumerica(Integer nota) {
+		this.nota = nota;
 	}
 
 	@Override
 	public Boolean estaAprobada() {
-		return this.calificacion >= 6;
+		return this.nota >= 6;
 	}
 
 	@Override
-	public Integer getCalificacion() {
-		return this.calificacion;
+	public Integer getNota() {
+		return this.nota;
 	}
 }

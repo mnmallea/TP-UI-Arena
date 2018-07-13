@@ -2,20 +2,20 @@ package domain;
 
 public class CalificacionConceptual implements Calificacion<String> {
 
-	private static final String CALIFICACION_MALA = "M";
-	private String calificacion;
+	private static final String NOTA_MALA = "M";
+	private String nota;
 
-	public CalificacionConceptual(String calificacion) {
-		this.calificacion = calificacion;
+	public CalificacionConceptual(String nota) {
+		this.nota = nota;
 	}
 
 	@Override
 	public Boolean estaAprobada() {
-		return !calificacion.equals(CALIFICACION_MALA);
+		return !nota.equals(NOTA_MALA);
 	}
 
 	@Override
-	public String getCalificacion() {
-		return calificacion;
+	public String getNota() {
+		return nota;
 	}
 }
