@@ -15,6 +15,7 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
 
 //IMPORTANTE: correr con -Djava.system.class.loader=com.uqbar.apo.APOClassLoader
+@SuppressWarnings("serial")
 public class AlumnoView extends MainWindow<Consulta> {
 
 	private static final int NUMBER_VISIBLE_ROWS = 4;
@@ -27,12 +28,12 @@ public class AlumnoView extends MainWindow<Consulta> {
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ventana de Alumno");
 		mainPanel.setLayout(new VerticalLayout());
-		
+
 		new Label(mainPanel).setText("Seleccione Alumno");
 		Selector<Alumno> selector = new Selector<Alumno>(mainPanel);
 		selector.bindItemsToProperty("alumnos");
 		selector.bindValueToProperty("alumno");
-		
+
 		Panel datosPanel = new Panel(mainPanel);
 		datosPanel.setLayout(new ColumnLayout(2));
 

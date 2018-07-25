@@ -1,8 +1,8 @@
 package domain;
 
-import org.uqbar.commons.model.annotations.TransactionalAndObservable;
-
 import java.util.List;
+
+import org.uqbar.commons.model.annotations.TransactionalAndObservable;
 
 @TransactionalAndObservable
 public class Alumno {
@@ -53,8 +53,9 @@ public class Alumno {
 	public void agregarAsignacion(Asignacion<?> unaAsignacion) {
 		this.asignaciones.add(unaAsignacion);
 	}
-	
+
+	@Override
 	public String toString() {
-		return this.nombre;
+		return this.getNombre();
 	}
 }

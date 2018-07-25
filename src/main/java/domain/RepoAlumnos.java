@@ -1,12 +1,11 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
 public class RepoAlumnos {
-	
+
 	public static final RepoAlumnos instancia = new RepoAlumnos();
 
 	private List<Alumno> alumnos;
@@ -19,7 +18,7 @@ public class RepoAlumnos {
 		return alumnos;
 	}
 
-	public void agregarAlumno(Alumno alumno){
+	public void agregarAlumno(Alumno alumno) {
 		alumnos.add(alumno);
 	}
 }

@@ -8,12 +8,12 @@ import java.util.List;
 public class Consulta {
 	public Alumno alumno;
 	public RepoAlumnos repoAlumnos;
-	
-	public Consulta(){
+
+	public Consulta() {
 		this.repoAlumnos = RepoAlumnos.instancia;
 	}
-	
-	public List<Alumno> getAlumnos(){
+
+	public List<Alumno> getAlumnos() {
 		return repoAlumnos.getAlumnos();
 	}
 
@@ -24,5 +24,5 @@ public class Consulta {
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
-	
+
 }

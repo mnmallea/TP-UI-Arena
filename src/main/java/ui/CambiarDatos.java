@@ -5,6 +5,7 @@ import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.WindowOwner;
 
+@SuppressWarnings("serial")
 public class CambiarDatos extends TransactionalDialog<AlumnoCambiarDatos> {
 
 	public CambiarDatos(WindowOwner owner, AlumnoCambiarDatos model) {
