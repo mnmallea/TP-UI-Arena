@@ -45,9 +45,9 @@ public class AlumnoCambiarDatos {
 
 	public void aplicarCambios() {
 		if(this.nombre.trim().equals(""))
-			throw new RuntimeException("El nombre no puede estar vacío");
+			throw new NombreException("El nombre no puede estar vacío");
 		if(this.usuarioGithub.trim().equals(""))
-			throw new RuntimeException("El usuario de github no puede ser vacío");
+			throw new UsuarioGitException("El usuario de github no puede ser vacío");
 
 		alumno.setUsuarioGithub(this.usuarioGithub);
 		alumno.setNombre(this.nombre);

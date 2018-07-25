@@ -1,6 +1,6 @@
 package ui;
 
-public class UsuarioGitException extends Throwable {
+public class UsuarioGitException extends RuntimeException {
 	public UsuarioGitException(String s) {
 	}
 }
