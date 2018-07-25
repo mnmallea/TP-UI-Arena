@@ -1,8 +1,8 @@
 package domain;
-import java.util.List;
 
 import org.uqbar.commons.model.annotations.Observable;
-import org.uqbar.commons.model.annotations.TransactionalAndObservable;
+
+import java.util.List;
 
 @Observable
 public class Consulta {

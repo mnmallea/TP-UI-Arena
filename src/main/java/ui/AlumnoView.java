@@ -3,6 +3,7 @@ package ui;
 import domain.Alumno;
 import domain.Asignacion;
 import domain.Consulta;
+import domain.Fixture;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -65,6 +66,7 @@ public class AlumnoView extends MainWindow<Consulta> {
 	}
 
 	public static void main(String[] args) {
+		Fixture.setUp();
 		new AlumnoView(new Consulta()).startApplication();
 	}
 }
