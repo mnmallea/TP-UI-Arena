@@ -1,6 +1,8 @@
 package ui;
 
-import domain.*;
+import domain.Alumno;
+import domain.Asignacion;
+import domain.Consulta;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -11,10 +13,11 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
 
-import java.util.Arrays;
-
 //IMPORTANTE: correr con -Djava.system.class.loader=com.uqbar.apo.APOClassLoader
 public class AlumnoView extends MainWindow<Consulta> {
+
+	private static final int NUMBER_VISIBLE_ROWS = 4;
+
 	public AlumnoView(Consulta model) {
 		super(model);
 	}
@@ -26,7 +29,7 @@ public class AlumnoView extends MainWindow<Consulta> {
 		
 		new Label(mainPanel).setText("Seleccione Alumno");
 		Selector<Alumno> selector = new Selector<Alumno>(mainPanel);
-		selector.bindItemsToProperty("alumnos").toString();
+		selector.bindItemsToProperty("alumnos");
 		selector.bindValueToProperty("alumno");
 		
 		Panel datosPanel = new Panel(mainPanel);
@@ -41,7 +44,7 @@ public class AlumnoView extends MainWindow<Consulta> {
 		new Label(datosPanel).setText("Usuario github:");
 		new Label(datosPanel).bindValueToProperty("alumno.usuarioGithub");
 
-		new Button(mainPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, this.getModelObject()).open());
+		new Button(mainPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, new AlumnoCambiarDatos(this.getModelObject().getAlumno())).open());
 
 		this.crearTablaDeNotas(mainPanel);
 	}
@@ -58,6 +61,7 @@ public class AlumnoView extends MainWindow<Consulta> {
 		new Column<Asignacion>(tabla).setTitle("Nota final").bindContentsToProperty("notaFinal");
 		new Column<Asignacion>(tabla).setTitle("¿Aprobada?").bindContentsToProperty("estaAprobada")
 				.setTransformer(new BoolTransformer());
+		tabla.setNumberVisibleRows(NUMBER_VISIBLE_ROWS);
 	}
 
 	public static void main(String[] args) {

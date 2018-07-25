@@ -1,14 +1,13 @@
 package ui;
 
-import domain.Consulta;
 import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.WindowOwner;
 
-public class CambiarDatos extends TransactionalDialog<Consulta> {
+public class CambiarDatos extends TransactionalDialog<AlumnoCambiarDatos> {
 
-	public CambiarDatos(WindowOwner owner, Consulta model) {
+	public CambiarDatos(WindowOwner owner, AlumnoCambiarDatos model) {
 		super(owner, model);
 	}
 
@@ -20,15 +19,21 @@ public class CambiarDatos extends TransactionalDialog<Consulta> {
 		new Label(panel);
 
 		new Label(panel).setText("Nombre:");
-		new TextBox(panel).bindValueToProperty("alumno.nombre");
+		new TextBox(panel).bindValueToProperty("nombre");
 
 		new Label(panel).setText("Legajo");
-		new NumericField(panel).bindValueToProperty("alumno.legajo");
+		new NumericField(panel).bindValueToProperty("legajo");
 
 		new Label(panel).setText("Usuario github:");
-		new TextBox(panel).bindValueToProperty("alumno.usuarioGithub");
+		new TextBox(panel).bindValueToProperty("usuarioGithub");
 
 		new Button(panel).setCaption("Aceptar").onClick(this::accept).setAsDefault();
 		new Button(panel).setCaption("Cancelar").onClick(this::cancel);
+	}
+
+	@Override
+	public void accept() {
+		this.getModelObject().aplicarCambios();
+		super.accept();
 	}
 }
