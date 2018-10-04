@@ -29,11 +29,6 @@ public class AlumnoView extends MainWindow<Consulta> {
 		this.setTitle("Ventana de Alumno");
 		mainPanel.setLayout(new VerticalLayout());
 
-		new Label(mainPanel).setText("Seleccione Alumno");
-		Selector<Alumno> selector = new Selector<Alumno>(mainPanel);
-		selector.bindItemsToProperty("alumnos");
-		selector.bindValueToProperty("alumno");
-
 		Panel datosPanel = new Panel(mainPanel);
 		datosPanel.setLayout(new ColumnLayout(2));
 
