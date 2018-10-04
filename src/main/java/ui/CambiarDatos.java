@@ -6,9 +6,9 @@ import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class CambiarDatos extends TransactionalDialog<AlumnoCambiarDatos> {
+public class CambiarDatos extends TransactionalDialog<AlumnoCambiarDatosViewModel> {
 
-	public CambiarDatos(WindowOwner owner, AlumnoCambiarDatos model) {
+	public CambiarDatos(WindowOwner owner, AlumnoCambiarDatosViewModel model) {
 		super(owner, model);
 	}
 

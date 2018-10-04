@@ -4,7 +4,7 @@ import domain.Alumno;
 import org.uqbar.commons.model.annotations.Observable;
 
 @Observable
-public class AlumnoCambiarDatos {
+public class AlumnoCambiarDatosViewModel {
 
 	private Alumno alumno;
 
@@ -12,7 +12,7 @@ public class AlumnoCambiarDatos {
 	private Long legajo;
 	private String usuarioGithub;
 
-	public AlumnoCambiarDatos(Alumno alumno) {
+	public AlumnoCambiarDatosViewModel(Alumno alumno) {
 		this.alumno = alumno;
 		this.nombre = alumno.getNombre();
 		this.legajo = alumno.getLegajo();

@@ -5,39 +5,39 @@ import domain.AsignacionParcial;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ui.AlumnoCambiarDatos;
+import ui.AlumnoCambiarDatosViewModel;
 import ui.NombreException;
 import ui.UsuarioGitException;
 
 import java.util.Collections;
 
-public class AlumnoCambiarDatosTest {
-	AlumnoCambiarDatos alumnoCambiarDatos;
+public class AlumnoCambiarDatosViewModelTest {
+	AlumnoCambiarDatosViewModel alumnoCambiarDatosViewModel;
 	Alumno alumno;
 
 	@Before
 	public void setUp() {
 		alumno = new Alumno("Gasti", 150000L, "ggabadian", Collections.singletonList(new AsignacionParcial("DDS")));
-		alumnoCambiarDatos = new AlumnoCambiarDatos(alumno);
+		alumnoCambiarDatosViewModel = new AlumnoCambiarDatosViewModel(alumno);
 	}
 
 	@Test(expected = NombreException.class)
 	public void deberiaFallarAlIngresarUnNombreVacio(){
-		alumnoCambiarDatos.setNombre(" ");
-		alumnoCambiarDatos.aplicarCambios();
+		alumnoCambiarDatosViewModel.setNombre(" ");
+		alumnoCambiarDatosViewModel.aplicarCambios();
 	}
 
 	@Test(expected = UsuarioGitException.class)
 	public void deberiaFallarAlIngresarUnUsuarioDeGitVacio() {
-		alumnoCambiarDatos.setUsuarioGithub("");
-		alumnoCambiarDatos.aplicarCambios();
+		alumnoCambiarDatosViewModel.setUsuarioGithub("");
+		alumnoCambiarDatosViewModel.aplicarCambios();
 	}
 
 	@Test
 	public void cambiarElNombreDeberiaTenerEfectoSobreElAlumnoDelModelo() {
 		String NUEVO_NOMBRE = "Holaaa";
-		alumnoCambiarDatos.setNombre(NUEVO_NOMBRE);
-		alumnoCambiarDatos.aplicarCambios();
+		alumnoCambiarDatosViewModel.setNombre(NUEVO_NOMBRE);
+		alumnoCambiarDatosViewModel.aplicarCambios();
 		Assert.assertEquals(NUEVO_NOMBRE, alumno.getNombre());
 	}
 }

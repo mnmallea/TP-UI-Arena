@@ -46,7 +46,7 @@ public class AlumnoView extends MainWindow<Consulta> {
 		new Label(datosPanel).setText("Usuario github:");
 		new Label(datosPanel).bindValueToProperty("alumno.usuarioGithub");
 
-		new Button(mainPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, new AlumnoCambiarDatos(this.getModelObject().getAlumno())).open());
+		new Button(mainPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, new AlumnoCambiarDatosViewModel(this.getModelObject().getAlumno())).open());
 
 		this.crearTablaDeNotas(mainPanel);
 	}
@@ -61,7 +61,7 @@ public class AlumnoView extends MainWindow<Consulta> {
 	private void describirTablaDeNotas(Table<Asignacion> tabla) {
 		new Column<Asignacion>(tabla).setTitle("Nombre").bindContentsToProperty("nombre");
 		new Column<Asignacion>(tabla).setTitle("Nota final").bindContentsToProperty("notaFinal");
-		new Column<Asignacion>(tabla).setTitle("¿Aprobada?").bindContentsToProperty("estaAprobada")
+		new Column<Asignacion>(tabla).setTitle("Aprobada?").bindContentsToProperty("estaAprobada")
 				.setTransformer(new BoolTransformer());
 		tabla.setNumberVisibleRows(NUMBER_VISIBLE_ROWS);
 	}
