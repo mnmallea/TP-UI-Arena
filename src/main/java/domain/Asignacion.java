@@ -6,40 +6,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Observable
-public abstract class Asignacion<T extends Calificacion<?>> {
-	private List<T> calificaciones;
-	private String nombre;
+public class Asignacion {
+    private List<Calificacion> calificaciones;
+    private String nombre;
 
-	public Asignacion(String nombre) {
-		this.nombre = nombre;
-		this.calificaciones = new ArrayList<>();
-	}
+    public Asignacion(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void agregarCalificacion(T unaCalificacion) {
-		calificaciones.add(unaCalificacion);
-	}
+    public Asignacion(String nombre, List<Calificacion> calificaciones) {
+        this.nombre = nombre;
+        this.calificaciones = new ArrayList<>(calificaciones);
+    }
 
-	private Calificacion<?> calificacionFinal() {
-		return this.calificaciones.get(calificaciones.size() - 1);
-	}
-	
-	public Boolean getEstaAprobada() {
-		return this.calificacionFinal().estaAprobada();
-	}
+    public void agregarCalificacion(Calificacion unaCalificacion) {
+        calificaciones.add(unaCalificacion);
+    }
 
-	public String getNotaFinal() {
-		return this.calificacionFinal().getNota().toString();
-	}
+    private Calificacion calificacionFinal() {
+        return calificaciones.isEmpty() ? new SinCalificacion() : calificaciones.get(calificaciones.size() - 1);
+    }
 
-	public String getNombre() {
-		return this.nombre;
-	}
+    public Boolean getEstaAprobada() {
+        return this.calificacionFinal().estaAprobada();
+    }
 
-	public List<T> getCalificaciones() {
-		return calificaciones;
-	}
+    public String getNotaFinal() {
+        return this.calificacionFinal().getNota();
+    }
 
-	public void setCalificaciones(List<T> calificaciones) {
-		this.calificaciones = calificaciones;
-	}
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public List<Calificacion> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<Calificacion> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
 }

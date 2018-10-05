@@ -1,61 +1,86 @@
 package domain;
 
+import org.uqbar.commons.model.annotations.Dependencies;
+import org.uqbar.commons.model.annotations.Observable;
+import services.RequestService;
+
 import java.util.List;
 
-import org.uqbar.commons.model.annotations.TransactionalAndObservable;
-
-@TransactionalAndObservable
+@Observable
 public class Alumno {
-	private String nombre;
-	private Long legajo;
-	private String usuarioGithub;
-	private List<Asignacion<?>> asignaciones;
+    private final List<Asignacion> asignaciones;
+    private String nombre;
+    private String apellido;
+    private Long legajo;
+    private String usuarioGithub;
 
-	public Alumno(String nombre, Long legajo, String usuarioGithub, List<Asignacion<?>> asignaciones) {
-		this.nombre = nombre;
-		this.legajo = legajo;
-		this.usuarioGithub = usuarioGithub;
-		this.asignaciones = asignaciones;
-	}
+    public static Alumno traerAlumno() {
+        return new RequestService().getAlumno();
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public Alumno(String nombre, String apellido, Long legajo, String usuarioGithub) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.legajo = legajo;
+        this.usuarioGithub = usuarioGithub;
+        this.asignaciones = new RequestService().getAsignaciones();
+    }
 
-	public Long getLegajo() {
-		return legajo;
-	}
+    @Dependencies({"refresh"})
+    public String getApellido() {
+        return apellido;
+    }
 
-	public String getUsuarioGithub() {
-		return usuarioGithub;
-	}
+    @Dependencies({"refresh"})
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    @Dependencies({"refresh"})
+    public Long getLegajo() {
+        return legajo;
+    }
 
-	public void setLegajo(Long legajo) {
-		this.legajo = legajo;
-	}
+    @Dependencies({"refresh"})
+    public String getUsuarioGithub() {
+        return usuarioGithub;
+    }
 
-	public void setUsuarioGithub(String usuarioGithub) {
-		this.usuarioGithub = usuarioGithub;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public List<Asignacion<?>> getAsignaciones() {
-		return asignaciones;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setAsignaciones(List<Asignacion<?>> asignaciones) {
-		this.asignaciones = asignaciones;
-	}
+    public void setUsuarioGithub(String usuarioGithub) {
+        this.usuarioGithub = usuarioGithub;
+    }
 
-	public void agregarAsignacion(Asignacion<?> unaAsignacion) {
-		this.asignaciones.add(unaAsignacion);
-	}
+    public List<Asignacion> getAsignaciones() {
+        return asignaciones;
+    }
 
-	@Override
-	public String toString() {
-		return this.getNombre();
-	}
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
+
+    public void postearCambios() {
+        new RequestService().updateAlumno(this);
+    }
+
+    //Fix para que Arena refresque
+    private boolean refresh;
+
+    public void coerceToRefresh() {
+        this.refresh = true;
+        this.refresh = false;
+    }
+
+    public boolean getRefresh() {
+        return refresh;
+    }
+    //
 }
