@@ -62,6 +62,6 @@ public class AlumnoCambiarDatosViewModel {
         alumno.setUsuarioGithub(this.usuarioGithub);
         alumno.setNombre(this.nombre);
         alumno.setApellido(this.apellido);
-        alumno.actualizar();
+        alumno.postearCambios();
     }
 }

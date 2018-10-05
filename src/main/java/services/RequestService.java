@@ -47,6 +47,6 @@ public class RequestService {
         WebResource.Builder resource = getResourceBuilder(STUDENT_RESOURCE);
         ClientResponse response = resource.put(ClientResponse.class, json);
         if(response.getStatus() != 201)
-            throw new RuntimeException("No se pudo actualizar el alumno");
+            throw new RuntimeException("No se pudo postearCambios el alumno");
     }
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import org.uqbar.commons.model.annotations.Dependencies;
 import org.uqbar.commons.model.annotations.Observable;
 import services.RequestService;
 
@@ -11,6 +12,11 @@ public class Alumno {
     private String apellido;
     private Long legajo;
     private String usuarioGithub;
+    private boolean refresh;
+
+    public static Alumno traerAlumno(){
+        return new RequestService().getAlumno();
+    }
 
     public Alumno(String nombre, String apellido, Long legajo, String usuarioGithub) {
         this.nombre = nombre;
@@ -19,27 +25,34 @@ public class Alumno {
         this.usuarioGithub = usuarioGithub;
     }
 
+    @Dependencies({"refresh"})
     public String getApellido() {
+        System.out.println("USE EL GETTER DE APELLIDO");
         return apellido;
     }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
+    @Dependencies({"refresh"})
     public String getNombre() {
+
+        System.out.println("USE EL GETTER DE NOMBRE");
         return nombre;
     }
-
+    @Dependencies({"refresh"})
     public Long getLegajo() {
         return legajo;
     }
-
+    @Dependencies({"refresh"})
     public String getUsuarioGithub() {
+
+        System.out.println("USE EL GETTER DE GIT");
         return usuarioGithub;
     }
 
     public void setNombre(String nombre) {
+        System.out.println("TE ESTOY HACIENDO UN SET DESPERTATE");
         this.nombre = nombre;
     }
 
@@ -48,6 +61,8 @@ public class Alumno {
     }
 
     public List<Asignacion> getAsignaciones() {
+
+        System.out.println("USE EL GETTER DE aSIGNCIONE");
         return new RequestService().getAsignaciones();
     }
 
@@ -56,7 +71,16 @@ public class Alumno {
         return this.getNombre();
     }
 
-    public void actualizar() {
+    public void postearCambios() {
         new RequestService().updateAlumno(this);
+    }
+
+    public void coerceToRefresh() {
+        this.refresh = true;
+        this.refresh = false;
+    }
+
+    public boolean getRefresh() {
+        return refresh;
     }
 }
