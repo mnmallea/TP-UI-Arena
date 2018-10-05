@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Consulta;
 import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.*;

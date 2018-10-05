@@ -9,9 +9,7 @@ import java.util.List;
 public class Alumno {
     private String nombre;
     private String apellido;
-
     private Long legajo;
-
     private String usuarioGithub;
 
     public Alumno(String nombre, String apellido, Long legajo, String usuarioGithub) {
@@ -43,10 +41,6 @@ public class Alumno {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public void setLegajo(Long legajo) {
-        this.legajo = legajo;
     }
 
     public void setUsuarioGithub(String usuarioGithub) {

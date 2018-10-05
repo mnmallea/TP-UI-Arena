@@ -54,7 +54,7 @@ public class AlumnoCambiarDatosViewModel {
     }
 
     public void aplicarCambios() {
-        if (this.nombre.trim().isEmpty())
+        if (this.nombre.trim().isEmpty() || this.apellido.trim().isEmpty())
             throw new NombreException("El nombre no puede estar vacío");
         if (this.usuarioGithub.trim().isEmpty())
             throw new UsuarioGitException("El usuario de github no puede ser vacío");
