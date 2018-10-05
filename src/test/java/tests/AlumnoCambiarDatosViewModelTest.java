@@ -20,9 +20,7 @@ public class AlumnoCambiarDatosViewModelTest {
 
     @Before
     public void setUp() {
-        Asignacion dds = new Asignacion("DDS");
-        List<Asignacion> asignaciones = new ArrayList<Asignacion>(Collections.singletonList(dds));
-        alumno = new Alumno("Gasti", 150000L, "ggabadian", asignaciones);
+        alumno = new Alumno("Gasti", "Gaba", 150000L, "ggabadian");
         alumnoCambiarDatosViewModel = new AlumnoCambiarDatosViewModel(alumno);
     }
 

@@ -1,22 +1,32 @@
 package domain;
 
-import java.util.List;
-
-import org.uqbar.commons.model.annotations.TransactionalAndObservable;
+import org.uqbar.commons.model.annotations.Observable;
 import services.RequestService;
 
-@TransactionalAndObservable
+import java.util.List;
+
+@Observable
 public class Alumno {
     private String nombre;
-    private Long legajo;
-    private String usuarioGithub;
-    private List<Asignacion> asignaciones;
+    private String apellido;
 
-    public Alumno(String nombre, Long legajo, String usuarioGithub, List<Asignacion> asignaciones) {
+    private Long legajo;
+
+    private String usuarioGithub;
+
+    public Alumno(String nombre, String apellido, Long legajo, String usuarioGithub) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.legajo = legajo;
         this.usuarioGithub = usuarioGithub;
-        this.asignaciones = asignaciones;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getNombre() {
@@ -47,12 +57,12 @@ public class Alumno {
         return new RequestService().getAsignaciones();
     }
 
-    public void agregarAsignacion(Asignacion unaAsignacion) {
-        this.asignaciones.add(unaAsignacion);
-    }
-
     @Override
     public String toString() {
         return this.getNombre();
+    }
+
+    public void actualizar() {
+        new RequestService().updateAlumno(this);
     }
 }

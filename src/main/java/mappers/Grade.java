@@ -1,4 +1,4 @@
-package deserializers;
+package mappers;
 
 import domain.Calificacion;
 import domain.CalificacionConceptual;

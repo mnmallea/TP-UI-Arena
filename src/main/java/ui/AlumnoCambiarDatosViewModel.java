@@ -6,51 +6,62 @@ import org.uqbar.commons.model.annotations.Observable;
 @Observable
 public class AlumnoCambiarDatosViewModel {
 
-	private Alumno alumno;
+    private Alumno alumno;
 
-	private String nombre;
-	private Long legajo;
-	private String usuarioGithub;
+    private String nombre;
+    private String apellido;
+    private Long legajo;
+    private String usuarioGithub;
 
-	public AlumnoCambiarDatosViewModel(Alumno alumno) {
-		this.alumno = alumno;
-		this.nombre = alumno.getNombre();
-		this.legajo = alumno.getLegajo();
-		this.usuarioGithub = alumno.getUsuarioGithub();
-	}
+    public AlumnoCambiarDatosViewModel(Alumno alumno) {
+        this.alumno = alumno;
+        this.nombre = alumno.getNombre();
+        this.legajo = alumno.getLegajo();
+        this.apellido = alumno.getApellido();
+        this.usuarioGithub = alumno.getUsuarioGithub();
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public Long getLegajo() {
-		return legajo;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setLegajo(Long legajo) {
-		this.legajo = legajo;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getUsuarioGithub() {
-		return usuarioGithub;
-	}
+    public Long getLegajo() {
+        return legajo;
+    }
 
-	public void setUsuarioGithub(String usuarioGithub) {
-		this.usuarioGithub = usuarioGithub;
-	}
+    public void setLegajo(Long legajo) {
+        this.legajo = legajo;
+    }
 
-	public void aplicarCambios() {
-		if(this.nombre.trim().equals(""))
-			throw new NombreException("El nombre no puede estar vacío");
-		if(this.usuarioGithub.trim().equals(""))
-			throw new UsuarioGitException("El usuario de github no puede ser vacío");
+    public String getUsuarioGithub() {
+        return usuarioGithub;
+    }
 
-		alumno.setUsuarioGithub(this.usuarioGithub);
-		alumno.setNombre(this.nombre);
-		alumno.setLegajo(this.legajo);
-	}
+    public void setUsuarioGithub(String usuarioGithub) {
+        this.usuarioGithub = usuarioGithub;
+    }
+
+    public void aplicarCambios() {
+        if (this.nombre.trim().isEmpty())
+            throw new NombreException("El nombre no puede estar vacío");
+        if (this.usuarioGithub.trim().isEmpty())
+            throw new UsuarioGitException("El usuario de github no puede ser vacío");
+
+        alumno.setUsuarioGithub(this.usuarioGithub);
+        alumno.setNombre(this.nombre);
+        alumno.setApellido(this.apellido);
+        alumno.actualizar();
+    }
 }

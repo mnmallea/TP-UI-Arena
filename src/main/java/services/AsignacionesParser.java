@@ -2,7 +2,7 @@ package services;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import deserializers.Assignments;
+import mappers.Assignments;
 import domain.Asignacion;
 
 import java.util.List;
@@ -15,7 +15,6 @@ public class AsignacionesParser {
         } catch (JsonSyntaxException e) {
             throw new AsignacionesParserException(e);
         }
-        System.out.println(assignments);
         return assignments.getAsignaciones();
     }
 }

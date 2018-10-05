@@ -12,9 +12,5 @@ public class Consulta {
 	public Alumno getAlumno() {
 		return new RequestService().getAlumno();
 	}
-
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
-	}
-
+	
 }

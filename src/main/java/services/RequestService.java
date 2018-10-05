@@ -1,12 +1,10 @@
 package services;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import deserializers.AlumnoDeserializer;
-import deserializers.Assignments;
+import mappers.Student;
 import domain.Alumno;
 import domain.Asignacion;
 
@@ -26,25 +24,29 @@ public class RequestService {
     }
 
     public Alumno getAlumno() {
-        WebResource resource = client.resource(API_NOTITAS).path(STUDENT_RESOURCE);
-        WebResource.Builder resurceWithHeader = resource.header("Authorization", "Bearer " + TOKEN);
-        WebResource.Builder builder = resurceWithHeader.accept(MediaType.APPLICATION_JSON);
-        ClientResponse response = builder.get(ClientResponse.class);
+        ClientResponse response = getResourceBuilder(STUDENT_RESOURCE).get(ClientResponse.class);
         String json = response.getEntity(String.class);
-        Gson gson = new GsonBuilder().registerTypeAdapter(Alumno.class, new AlumnoDeserializer()).create();
-        System.out.println(json);
-        return gson.fromJson(json, Alumno.class);
+        Student student = new Gson().fromJson(json, Student.class);
+        return student.getAlumno();
+    }
+
+    private WebResource.Builder getResourceBuilder(String path) {
+        WebResource resource = client.resource(API_NOTITAS).path(path);
+        return resource.header("Authorization", "Bearer " + TOKEN).accept(MediaType.APPLICATION_JSON);
     }
 
     public List<Asignacion> getAsignaciones() {
-        WebResource resource = client.resource(API_NOTITAS).path(STUDENT_RESOURCE + "/" + ASSIGNMENTS_RESOURCE);
-        WebResource.Builder builder = resource.header("Authorization", "Bearer " + TOKEN).accept(MediaType.APPLICATION_JSON);
-        ClientResponse response = builder.get(ClientResponse.class);
+        ClientResponse response = getResourceBuilder(STUDENT_RESOURCE + "/" + ASSIGNMENTS_RESOURCE).get(ClientResponse.class);
         String json = response.getEntity(String.class);
+
         return new AsignacionesParser().parseAssignments(json);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new RequestService().getAsignaciones());
+    public void updateAlumno(Alumno alumno) {
+        String json = new Gson().toJson(new Student(alumno));
+        WebResource.Builder resource = getResourceBuilder(STUDENT_RESOURCE);
+        ClientResponse response = resource.put(ClientResponse.class, json);
+        if(response.getStatus() != 201)
+            throw new RuntimeException("No se pudo actualizar el alumno");
     }
 }
