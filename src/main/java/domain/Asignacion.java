@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Observable
-public abstract class Asignacion<T extends Calificacion<?>> {
-	private List<T> calificaciones;
+public class Asignacion{
+	private List<Calificacion> calificaciones;
 	private String nombre;
 
 	public Asignacion(String nombre) {
@@ -15,12 +15,12 @@ public abstract class Asignacion<T extends Calificacion<?>> {
 		this.calificaciones = new ArrayList<>();
 	}
 
-	public void agregarCalificacion(T unaCalificacion) {
+	public void agregarCalificacion(Calificacion unaCalificacion) {
 		calificaciones.add(unaCalificacion);
 	}
 
-	private Calificacion<?> calificacionFinal() {
-		return this.calificaciones.get(calificaciones.size() - 1);
+	private Calificacion calificacionFinal() {
+		return calificaciones.isEmpty()? new SinCalificacion(): calificaciones.get(calificaciones.size() - 1);
 	}
 	
 	public Boolean getEstaAprobada() {
@@ -28,18 +28,18 @@ public abstract class Asignacion<T extends Calificacion<?>> {
 	}
 
 	public String getNotaFinal() {
-		return this.calificacionFinal().getNota().toString();
+		return this.calificacionFinal().getNota();
 	}
 
 	public String getNombre() {
 		return this.nombre;
 	}
 
-	public List<T> getCalificaciones() {
+	public List<Calificacion> getCalificaciones() {
 		return calificaciones;
 	}
 
-	public void setCalificaciones(List<T> calificaciones) {
+	public void setCalificaciones(List<Calificacion> calificaciones) {
 		this.calificaciones = calificaciones;
 	}
 }

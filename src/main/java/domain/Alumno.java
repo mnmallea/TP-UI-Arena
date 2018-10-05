@@ -3,15 +3,16 @@ package domain;
 import java.util.List;
 
 import org.uqbar.commons.model.annotations.TransactionalAndObservable;
+import services.RequestService;
 
 @TransactionalAndObservable
 public class Alumno {
     private String nombre;
     private Long legajo;
     private String usuarioGithub;
-    private List<Asignacion<?>> asignaciones;
+    private List<Asignacion> asignaciones;
 
-    public Alumno(String nombre, Long legajo, String usuarioGithub, List<Asignacion<?>> asignaciones) {
+    public Alumno(String nombre, Long legajo, String usuarioGithub, List<Asignacion> asignaciones) {
         this.nombre = nombre;
         this.legajo = legajo;
         this.usuarioGithub = usuarioGithub;
@@ -42,15 +43,11 @@ public class Alumno {
         this.usuarioGithub = usuarioGithub;
     }
 
-    public List<Asignacion<?>> getAsignaciones() {
-        return asignaciones;
+    public List<Asignacion> getAsignaciones() {
+        return new RequestService().getAsignaciones();
     }
 
-    public void setAsignaciones(List<Asignacion<?>> asignaciones) {
-        this.asignaciones = asignaciones;
-    }
-
-    public void agregarAsignacion(Asignacion<?> unaAsignacion) {
+    public void agregarAsignacion(Asignacion unaAsignacion) {
         this.asignaciones.add(unaAsignacion);
     }
 

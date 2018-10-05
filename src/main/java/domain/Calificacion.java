@@ -1,6 +1,6 @@
 package domain;
 
-public interface Calificacion<T> {
+public interface Calificacion {
 	Boolean estaAprobada();
-	T getNota();
+	String getNota();
 }

@@ -6,30 +6,30 @@ public class Fixture {
 
 	public static void setUp(){
 		// Martin Mallea
-		AsignacionParcial parcialMartin = new AsignacionParcial("Parcial DDS");
+		Asignacion parcialMartin = new Asignacion("Parcial DDS");
 		parcialMartin.agregarCalificacion(new CalificacionNumerica(6));
-		AsignacionTP tpMartin = new AsignacionTP("TP UI Arena");
+		Asignacion tpMartin = new Asignacion("TP UI Arena");
 		tpMartin.agregarCalificacion(new CalificacionConceptual("M"));
 		tpMartin.agregarCalificacion(new CalificacionConceptual("R"));
 		Alumno martin = new Alumno("Martin Mallea", 1590935L, "mnmallea", Arrays.asList(parcialMartin, tpMartin));
 
 
 		//Gaston Gabadian
-		AsignacionParcial parcialGaston = new AsignacionParcial("Parcial DDS");
+		Asignacion parcialGaston = new Asignacion("Parcial DDS");
 		parcialGaston.agregarCalificacion(new CalificacionNumerica(2));
-		AsignacionTP tpGaston = new AsignacionTP("TP UI Arena");
+		Asignacion tpGaston = new Asignacion("TP UI Arena");
 		tpGaston.agregarCalificacion(new CalificacionConceptual("M"));
 		tpGaston.agregarCalificacion(new CalificacionConceptual("M"));
 		Alumno gaston = new Alumno("Gaston Gabadian", 1590807L, "ggabadian", Arrays.asList(parcialGaston, tpGaston));
 
 		//Albert Einstein
-		AsignacionParcial parcialEinstein = new AsignacionParcial("Parcial Teoria de la Relatividad");
+		Asignacion parcialEinstein = new Asignacion("Parcial Teoria de la Relatividad");
 		parcialEinstein.agregarCalificacion(new CalificacionNumerica(14));
-		AsignacionTP tpEinstein = new AsignacionTP("TP MRUV");
+		Asignacion tpEinstein = new Asignacion("TP MRUV");
 		tpEinstein.agregarCalificacion(new CalificacionConceptual("MB+++++++++++++++++++++++++++++++"));
-		AsignacionTP tpEinstein2 = new AsignacionTP("TP Funcion Lineal");
+		Asignacion tpEinstein2 = new Asignacion("TP Funcion Lineal");
 		tpEinstein2.agregarCalificacion(new CalificacionConceptual("B+++++++"));
-		Alumno einstein = new Alumno("Albert Einstein", 0000001L, "soyElDelBuffet", Arrays.asList(parcialEinstein, tpEinstein,tpEinstein2));
+		Alumno einstein = new Alumno("Albert Einstein", 1L, "soyElDelBuffet", Arrays.asList(parcialEinstein, tpEinstein,tpEinstein2));
 
 		RepoAlumnos.instancia.agregarAlumno(martin);
 		RepoAlumnos.instancia.agregarAlumno(gaston);

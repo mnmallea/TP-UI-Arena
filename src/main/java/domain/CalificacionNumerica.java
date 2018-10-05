@@ -1,6 +1,6 @@
 package domain;
 
-public class CalificacionNumerica implements Calificacion<Integer> {
+public class CalificacionNumerica implements Calificacion {
 
 	private Integer nota;
 
@@ -14,7 +14,7 @@ public class CalificacionNumerica implements Calificacion<Integer> {
 	}
 
 	@Override
-	public Integer getNota() {
-		return this.nota;
+	public String getNota() {
+		return this.nota.toString();
 	}
 }

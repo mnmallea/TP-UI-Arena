@@ -1,6 +1,5 @@
 package ui;
 
-import domain.Alumno;
 import domain.Asignacion;
 import domain.Consulta;
 import domain.Fixture;
@@ -9,7 +8,6 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
@@ -47,16 +45,16 @@ public class AlumnoView extends MainWindow<Consulta> {
 	}
 
 	private void crearTablaDeNotas(Panel mainPanel) {
-		Table<Asignacion> tabla = new Table<Asignacion>(mainPanel, Asignacion.class);
+		Table<Asignacion> tabla = new Table<>(mainPanel, Asignacion.class);
 		tabla.bindItemsToProperty("alumno.asignaciones");
 
 		this.describirTablaDeNotas(tabla);
 	}
 
 	private void describirTablaDeNotas(Table<Asignacion> tabla) {
-		new Column<Asignacion>(tabla).setTitle("Nombre").bindContentsToProperty("nombre");
-		new Column<Asignacion>(tabla).setTitle("Nota final").bindContentsToProperty("notaFinal");
-		new Column<Asignacion>(tabla).setTitle("Aprobada?").bindContentsToProperty("estaAprobada")
+		new Column<>(tabla).setTitle("Nombre").bindContentsToProperty("nombre");
+		new Column<>(tabla).setTitle("Nota final").bindContentsToProperty("notaFinal");
+		new Column<>(tabla).setTitle("Aprobada?").bindContentsToProperty("estaAprobada")
 				.setTransformer(new BoolTransformer());
 		tabla.setNumberVisibleRows(NUMBER_VISIBLE_ROWS);
 	}

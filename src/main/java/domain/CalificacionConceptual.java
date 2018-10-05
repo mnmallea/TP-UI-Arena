@@ -1,6 +1,6 @@
 package domain;
 
-public class CalificacionConceptual implements Calificacion<String> {
+public class CalificacionConceptual implements Calificacion {
 
 	private static final String NOTA_MALA = "M";
 	private String nota;
