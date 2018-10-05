@@ -41,10 +41,7 @@ public class RequestService {
         WebResource.Builder builder = resource.header("Authorization", "Bearer " + TOKEN).accept(MediaType.APPLICATION_JSON);
         ClientResponse response = builder.get(ClientResponse.class);
         String json = response.getEntity(String.class);
-        System.out.println(json);
-        Assignments assignments = new Gson().fromJson(json, Assignments.class);
-        System.out.println(assignments);
-        return assignments.getAsignaciones();
+        return new AsignacionesParser().parseAssignments(json);
     }
 
     public static void main(String[] args) {
