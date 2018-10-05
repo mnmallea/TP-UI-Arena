@@ -1,6 +1,5 @@
 package ui;
 
-import domain.Consulta;
 import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.*;
@@ -21,16 +20,16 @@ public class CambiarDatos extends TransactionalDialog<AlumnoCambiarDatosViewMode
         new Label(panel);
 
         new Label(panel).setText("Nombre:");
-        new TextBox(panel).bindValueToProperty("nombre");
+        new TextBox(panel).setWidth(120).bindValueToProperty("nombre");
 
         new Label(panel).setText("Apellido:");
-        new TextBox(panel).bindValueToProperty("apellido");
+        new TextBox(panel).setWidth(120).bindValueToProperty("apellido");
 
         new Label(panel).setText("Legajo");
-        new Label(panel).bindValueToProperty("legajo");
+        new Label(panel).setWidth(120).bindValueToProperty("legajo");
 
         new Label(panel).setText("Usuario github:");
-        new TextBox(panel).bindValueToProperty("usuarioGithub");
+        new TextBox(panel).setWidth(120).bindValueToProperty("usuarioGithub");
 
         new Button(panel).setCaption("Aceptar").onClick(this::accept).setAsDefault();
         new Button(panel).setCaption("Cancelar").onClick(this::cancel);

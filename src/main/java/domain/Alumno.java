@@ -8,13 +8,13 @@ import java.util.List;
 
 @Observable
 public class Alumno {
+    private final List<Asignacion> asignaciones;
     private String nombre;
     private String apellido;
     private Long legajo;
     private String usuarioGithub;
-    private boolean refresh;
 
-    public static Alumno traerAlumno(){
+    public static Alumno traerAlumno() {
         return new RequestService().getAlumno();
     }
 
@@ -23,36 +23,34 @@ public class Alumno {
         this.apellido = apellido;
         this.legajo = legajo;
         this.usuarioGithub = usuarioGithub;
+        this.asignaciones = new RequestService().getAsignaciones();
     }
 
     @Dependencies({"refresh"})
     public String getApellido() {
-        System.out.println("USE EL GETTER DE APELLIDO");
         return apellido;
+    }
+
+    @Dependencies({"refresh"})
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Dependencies({"refresh"})
+    public Long getLegajo() {
+        return legajo;
+    }
+
+    @Dependencies({"refresh"})
+    public String getUsuarioGithub() {
+        return usuarioGithub;
     }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    @Dependencies({"refresh"})
-    public String getNombre() {
-
-        System.out.println("USE EL GETTER DE NOMBRE");
-        return nombre;
-    }
-    @Dependencies({"refresh"})
-    public Long getLegajo() {
-        return legajo;
-    }
-    @Dependencies({"refresh"})
-    public String getUsuarioGithub() {
-
-        System.out.println("USE EL GETTER DE GIT");
-        return usuarioGithub;
-    }
 
     public void setNombre(String nombre) {
-        System.out.println("TE ESTOY HACIENDO UN SET DESPERTATE");
         this.nombre = nombre;
     }
 
@@ -61,9 +59,7 @@ public class Alumno {
     }
 
     public List<Asignacion> getAsignaciones() {
-
-        System.out.println("USE EL GETTER DE aSIGNCIONE");
-        return new RequestService().getAsignaciones();
+        return asignaciones;
     }
 
     @Override
@@ -75,6 +71,9 @@ public class Alumno {
         new RequestService().updateAlumno(this);
     }
 
+    //Fix para que Arena refresque
+    private boolean refresh;
+
     public void coerceToRefresh() {
         this.refresh = true;
         this.refresh = false;
@@ -83,4 +82,5 @@ public class Alumno {
     public boolean getRefresh() {
         return refresh;
     }
+    //
 }
