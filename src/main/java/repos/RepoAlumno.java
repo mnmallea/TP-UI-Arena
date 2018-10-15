@@ -27,4 +27,8 @@ public class RepoAlumno {
         alumno.setAsignaciones(asignaciones);
         return alumno;
     }
+
+    public void updateAlumno(Alumno alumno){
+        requestService.putAlumno(alumno);
+    }
 }

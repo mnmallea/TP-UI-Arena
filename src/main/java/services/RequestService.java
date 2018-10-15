@@ -42,7 +42,7 @@ public class RequestService {
         return new AsignacionesParser().parseAssignments(json);
     }
 
-    public void updateAlumno(Alumno alumno) {
+    public void putAlumno(Alumno alumno) {
         String json = new Gson().toJson(new Student(alumno));
         WebResource.Builder resource = getResourceBuilder(STUDENT_RESOURCE);
         ClientResponse response = resource.put(ClientResponse.class, json);

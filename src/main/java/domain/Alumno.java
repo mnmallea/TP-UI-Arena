@@ -1,12 +1,7 @@
 package domain;
 
-import org.uqbar.commons.model.annotations.Dependencies;
-import org.uqbar.commons.model.annotations.Observable;
-import services.RequestService;
-
 import java.util.List;
 
-@Observable
 public class Alumno {
     private List<Asignacion> asignaciones;
 
@@ -21,22 +16,18 @@ public class Alumno {
         this.usuarioGithub = usuarioGithub;
     }
 
-    @Dependencies({"refresh"})
     public String getApellido() {
         return apellido;
     }
 
-    @Dependencies({"refresh"})
     public String getNombre() {
         return nombre;
     }
 
-    @Dependencies({"refresh"})
     public Long getLegajo() {
         return legajo;
     }
 
-    @Dependencies({"refresh"})
     public String getUsuarioGithub() {
         return usuarioGithub;
     }
@@ -63,23 +54,6 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return this.getNombre() + this.getApellido();
+        return this.getNombre() + " " + this.getApellido();
     }
-
-    public void postearCambios() {
-        new RequestService().updateAlumno(this);
-    }
-
-    //Fix para que Arena refresque
-    private boolean refresh;
-
-    public void coerceToRefresh() {
-        this.refresh = true;
-        this.refresh = false;
-    }
-
-    public boolean getRefresh() {
-        return refresh;
-    }
-    //
 }

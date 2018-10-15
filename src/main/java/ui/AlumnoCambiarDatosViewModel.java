@@ -2,6 +2,7 @@ package ui;
 
 import domain.Alumno;
 import org.uqbar.commons.model.annotations.Observable;
+import repos.RepoAlumno;
 
 @Observable
 public class AlumnoCambiarDatosViewModel {
@@ -62,6 +63,6 @@ public class AlumnoCambiarDatosViewModel {
         alumno.setUsuarioGithub(this.usuarioGithub);
         alumno.setNombre(this.nombre);
         alumno.setApellido(this.apellido);
-        alumno.postearCambios();
+        RepoAlumno.getInstance().updateAlumno(alumno);
     }
 }
