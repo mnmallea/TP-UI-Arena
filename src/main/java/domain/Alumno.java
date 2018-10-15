@@ -8,22 +8,17 @@ import java.util.List;
 
 @Observable
 public class Alumno {
-    private final List<Asignacion> asignaciones;
+    private List<Asignacion> asignaciones;
+
     private String nombre;
     private String apellido;
     private Long legajo;
     private String usuarioGithub;
-
-    public static Alumno traerAlumno() {
-        return new RequestService().getAlumno();
-    }
-
     public Alumno(String nombre, String apellido, Long legajo, String usuarioGithub) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.legajo = legajo;
         this.usuarioGithub = usuarioGithub;
-        this.asignaciones = new RequestService().getAsignaciones();
     }
 
     @Dependencies({"refresh"})
@@ -62,9 +57,13 @@ public class Alumno {
         return asignaciones;
     }
 
+    public void setAsignaciones(List<Asignacion> asignaciones) {
+        this.asignaciones = asignaciones;
+    }
+
     @Override
     public String toString() {
-        return this.getNombre();
+        return this.getNombre() + this.getApellido();
     }
 
     public void postearCambios() {

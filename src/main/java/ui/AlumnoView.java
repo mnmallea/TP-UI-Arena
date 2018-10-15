@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
+import repos.RepoAlumno;
 
 //IMPORTANTE: correr con -Djava.system.class.loader=com.uqbar.apo.APOClassLoader
 @SuppressWarnings("serial")
@@ -63,6 +64,6 @@ public class AlumnoView extends MainWindow<Alumno> {
     }
 
     public static void main(String[] args) {
-        new AlumnoView(Alumno.traerAlumno()).startApplication();
+        new AlumnoView(RepoAlumno.getInstance().getAlumno()).startApplication();
     }
 }
