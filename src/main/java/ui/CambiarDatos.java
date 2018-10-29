@@ -37,7 +37,12 @@ public class CambiarDatos extends TransactionalDialog<AlumnoCambiarDatosViewMode
 
     @Override
     public void accept() {
-        this.getModelObject().aplicarCambios();
-        super.accept();
+        try {
+            this.getModelObject().aplicarCambios();
+            super.accept();
+        }catch (Exception e){
+            System.out.println("Pase por aca");
+            new ErrorDialog(this, new ErrorMessage(e.getMessage())).open();
+        }
     }
 }

@@ -1,6 +1,5 @@
 package ui;
 
-import domain.Alumno;
 import domain.Asignacion;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -13,11 +12,11 @@ import org.uqbar.arena.windows.MainWindow;
 
 //IMPORTANTE: correr con -Djava.system.class.loader=com.uqbar.apo.APOClassLoader
 @SuppressWarnings("serial")
-public class AlumnoView extends MainWindow<Alumno> {
+public class AlumnoView extends MainWindow<AlumnoViewModel> {
 
     private static final int NUMBER_VISIBLE_ROWS = 4;
 
-    public AlumnoView(Alumno model) {
+    public AlumnoView(AlumnoViewModel model) {
         super(model);
     }
 
@@ -41,8 +40,7 @@ public class AlumnoView extends MainWindow<Alumno> {
         new Label(datosPanel).setText("Usuario github:");
         new Label(datosPanel).bindValueToProperty("usuarioGithub");
 
-        new Button(mainPanel).setCaption("Cambiar datos").onClick(() -> new CambiarDatos(this, new AlumnoCambiarDatosViewModel(this.getModelObject())).open());
-        new Button(mainPanel).setCaption("Refresh").onClick(() -> getModelObject().coerceToRefresh());
+        new Button(mainPanel).setCaption("Cambiar datos").onClick(this::openCambiarDatosWindow);
 
         this.crearTablaDeNotas(mainPanel);
     }
@@ -62,7 +60,11 @@ public class AlumnoView extends MainWindow<Alumno> {
         tabla.setNumberVisibleRows(NUMBER_VISIBLE_ROWS);
     }
 
+    private void openCambiarDatosWindow() {
+        new CambiarDatos(this, new AlumnoCambiarDatosViewModel(this.getModelObject().getAlumno())).open();
+    }
+
     public static void main(String[] args) {
-        new AlumnoView(Alumno.traerAlumno()).startApplication();
+        new AlumnoView(new AlumnoViewModel()).startApplication();
     }
 }
